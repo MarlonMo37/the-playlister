@@ -1,3 +1,9 @@
+require 'uri'
+require "net/http"
+require 'openssl'
+
+require "open-uri"
+require "json"
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
