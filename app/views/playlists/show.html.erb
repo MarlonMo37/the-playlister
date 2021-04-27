@@ -1,0 +1,13 @@
+<h1><%= @playlist.name %></h1>
+
+<% if @playlist.songs.length == 0 %>
+    <h3>This playlist has no tracks, go add some <%= link_to "here", songs_path %>!!</h3>
+<% else %>
+    <% @playlist.songs.each do |s| %>
+        <%= s.name %>
+            <%= form_for(:s, url: song_path(s), :html => { method: "delete" }) do |f| %>
+                <%= f.hidden_field :playlist_id, :value => @playlist.id %>
+            <%= f.submit "Remove Track" %>
+        <% end %>
+    <% end %>
+<% end %>

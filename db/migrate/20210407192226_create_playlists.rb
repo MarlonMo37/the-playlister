@@ -3,7 +3,7 @@ class CreatePlaylists < ActiveRecord::Migration[6.1]
     create_table :playlists do |t|
       t.string :name
       t.boolean :favorite
-      t.references :listener
+      t.references :user
 
       t.timestamps
     end

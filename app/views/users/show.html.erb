@@ -1,0 +1,14 @@
+<h1>Your Profile</h1>
+
+<h3>Username: <%= @user.username %>
+<h3>Email: <%= @user.email %></h3>
+
+<h3>You have <%= @playlists.length %> playlist(s)!!<h3>
+<%= link_to "View Playlists", playlists_path, class: 'button' %>
+
+<h3>Favorited Song(s): <h3>
+<%= link_to "View Favorited Songs"%>
+
+
+
+

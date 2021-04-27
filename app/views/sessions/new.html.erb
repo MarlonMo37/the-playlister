@@ -1,0 +1,19 @@
+<h1>Login<h1/>
+
+<%= error %><br>
+
+<div>
+    <%= form_with(url: '/login') do |f| %>
+        <%= f.label :email %><br>
+        <%= f.email_field :email %><br>
+
+        <%= f.label :password %><br>
+        <%= f.password_field :password %><br>
+
+        <%= f.submit "Login" %>
+    <% end %>
+</div>
+
+<h4>If you dont have an account, please make one <%= link_to "here", signup_path %>.</h4>
+
+

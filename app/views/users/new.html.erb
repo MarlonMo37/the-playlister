@@ -1,0 +1,20 @@
+<h1>Sign Up to Create Your Own Playlists!!</h1>
+
+<%= conditional_errors(@user) %>
+
+<div>
+    <%= form_for(@user, url: "/signup") do |f| %>
+        <%= f.label :username %><br>
+        <%= f.text_field :username %><br>
+
+        <%= f.label :email %><br>
+        <%= f.email_field :email %><br>
+
+        <%= f.label :password %><br>
+        <%= f.password_field :password %><br>
+
+        <%= f.submit %>
+    <% end %>
+</div>
+
+<h4>Already have an account with us? Then please log in <%= link_to "here", login_path %>.</h4>
