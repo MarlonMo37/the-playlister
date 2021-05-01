@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
     before_action :redirect_if_not_logged_in
+    layout "playlist"
 
     def index
         @playlists = Playlist.all
@@ -22,6 +23,7 @@ class PlaylistsController < ApplicationController
     
     def show
         @playlist = find_playlist
+        render :layout => "application"
     end
 
     def edit

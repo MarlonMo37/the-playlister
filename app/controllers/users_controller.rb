@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     def show 
         @user = current_user
         @playlists = current_user.playlists
+        render :layout => "user"
     end
 
 

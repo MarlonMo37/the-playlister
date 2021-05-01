@@ -1,12 +1,15 @@
 class SongsController < ApplicationController
+    before_action :redirect_if_not_logged_in, :except=>[:index]
 
     def index
         if params["search"]
             @songs = Song.search_by_name(params["search"])
             @user = current_user
+            render :layout => "song"
         else
             @songs = Song.all
             @user = current_user
+            render :layout => "song"
         end
     end
 
