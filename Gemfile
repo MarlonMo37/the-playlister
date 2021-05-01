@@ -25,6 +25,7 @@ gem 'dotenv-rails'
 
 
 gem 'email_validator'
+gem 'bootstrap', '~> 5.0.0.beta1'
 
 
 # Use Active Storage variant

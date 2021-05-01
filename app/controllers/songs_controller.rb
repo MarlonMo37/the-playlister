@@ -9,14 +9,15 @@ class SongsController < ApplicationController
         @playlist =  Playlist.find_by(name: params["s"]["playlists"])
         @song = Song.find_by(id: params[:id])
         @playlist.songs << @song
+        redirect_to songs_path
     end
 
     def destroy
-        byebug
         @playlist = Playlist.find_by(id: params["s"]["playlist_id"])
         @song =  Song.find_by(id: params["id"])
 
         @playlist.songs.delete(@song)
+        redirect_to playlist_path(@playlist)
     end
 
     private

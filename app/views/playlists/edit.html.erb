@@ -4,15 +4,28 @@
 
 
 
-<%= form_with(model: @playlist) do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
+    
+<div class="container">
+    <%= form_with(model: @playlist) do |f| %>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %><br>
 
-    <%= f.label :favorite? %><br>
-    <%= f.select :favorite, options_for_select([["No", false], ["Yes", true]]) %><br><br>
+        <%= f.label :favorite? %><br>
+        <%= f.select :favorite, options_for_select([["No", false], ["Yes", true]]) %><br><br>
 
-    <%= f.hidden_field :user_id, :value => @user.id %>
+        <%= f.hidden_field :user_id, :value => @user.id %>
 
-    <%= f.submit %>
-<% end %>
+        <% @playlist.songs.each do |song| %>
+            
+            <img src= "<%= song.album_avatar %>">
+            <h3><%= song.name %></h3>
+            <%= f.fields_for :playlists_songs, PlaylistsSong.find_by(song_id: song.id, playlist_id: @playlist.id)  do |song_field| %>
+                <%= song_field.label :rating %>
+                <%= song_field.select :rating, options_for_select([["0", "0"],["1", "1"],["2", "2"],["3", "3"],["4", "4"],["5", "5"]]) %>
+            <% end %><br>
+        <% end %>
+
+        <%= f.submit %>
+    <% end %>
+</div>
 

@@ -5,5 +5,6 @@ class Playlist < ApplicationRecord
     # validates :user, presence: true
     validates :name, presence: true
     validates :name, uniqueness: { scope: :user_id}
+    accepts_nested_attributes_for :playlists_songs
 
 end

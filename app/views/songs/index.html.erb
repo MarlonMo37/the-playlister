@@ -3,20 +3,24 @@
 <% @songs.each do |s| %>
     <img src= "<%= s.album_avatar %>">
     <h3><%= s.name %></h3>
-    <h3><%= link_to "Listen to preview", s.preview, target: :_blank %><h3>
+    <h3><%= link_to "Preview", s.preview, target: :_blank %><h3>
     <h3>By: <%= s.artist_name %></h3>
     <h3>Album: <%= s.album_name %></h3>
-    
-    <% pl = @user.playlists.map {|p| p['name'] if p.songs.include?(s) != true } %>
 
-    <% if pl.length != 0 %>
-        <h3>Add to playlist
-            <%= form_for( :s, url: song_path(s), method: "patch" ) do |f| %>
+    <% if @user %>
+        <% pl = @user.playlists.map {|p| p['name'] if p.songs.include?(s) != true } %>
+            <% if pl.length != 0 %>
+                <h3>Add to playlist
+                <%= form_for( :s, url: song_path(s), method: "patch" ) do |f| %>
                 <%= f.select :playlists, options_for_select(pl) %>
 
                 <%= f.submit "Add" %>
             <% end %>
     <% end %>
+
+
+    <% end %>
+   
     <br><br>
 
 <% end %>

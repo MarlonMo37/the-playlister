@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_04_13_023611) do
   create_table "playlists_songs", force: :cascade do |t|
     t.integer "playlist_id"
     t.integer "song_id"
+    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["playlist_id"], name: "index_playlists_songs_on_playlist_id"

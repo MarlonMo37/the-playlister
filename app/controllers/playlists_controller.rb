@@ -30,6 +30,7 @@ class PlaylistsController < ApplicationController
     end
 
     def update 
+        byebug
         @user = current_user
         @playlist = find_playlist
         if @playlist.update(playlist_params)
@@ -52,7 +53,6 @@ class PlaylistsController < ApplicationController
     end
 
     def playlist_params
-        params.require(:playlist).permit(:name, :favorite, :user_id)
+        params.require(:playlist).permit(:name, :favorite, :user_id, playlists_songs_attributes: [:playlist_id, :song_id, :rating, :id])
     end
-
 end
