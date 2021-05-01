@@ -1,8 +1,13 @@
 class SongsController < ApplicationController
 
     def index
-        @songs = Song.all
-        @user = current_user
+        if params["search"]
+            @songs = Song.search_by_name(params["search"])
+            @user = current_user
+        else
+            @songs = Song.all
+            @user = current_user
+        end
     end
 
     def update

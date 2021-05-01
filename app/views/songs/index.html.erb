@@ -1,5 +1,11 @@
 <h1>All Tracks</h1>
 
+<%= form_with(url: songs_path, method: :get) do |f| %>
+    <%= f.label :search, "Search for Songs by name" %>
+    <%= f.text_field :search %>
+    <%= f.submit "Search" %>
+<% end %>
+
 <% @songs.each do |s| %>
     <img src= "<%= s.album_avatar %>">
     <h3><%= s.name %></h3>

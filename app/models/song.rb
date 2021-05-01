@@ -4,6 +4,7 @@ class Song < ApplicationRecord
     validates :name, presence: true
     validates :artist_name, presence: true
 
+    scope :search_by_name, -> (search) { where("name LIKE ?", "#{search}%")}
 
     def self.organize_songs_from_playlist(tracks)
         tracks.each do |track|
