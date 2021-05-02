@@ -32,7 +32,6 @@ class PlaylistsController < ApplicationController
     end
 
     def update 
-        byebug
         @user = current_user
         @playlist = find_playlist
         if @playlist.update(playlist_params)

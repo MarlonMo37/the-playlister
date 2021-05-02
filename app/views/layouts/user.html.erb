@@ -30,7 +30,7 @@
                     <% end %>
                     <% if logged_in? %>
                         <li class="nav-item">
-                            <a class="nav-link active" href=<%= logout_path %>">Log Out</a>
+                            <a class="nav-link active" href="<%= logout_path %>">Log Out</a>
                         </li>
                     <% else %>
                         <li class="nav-item">
@@ -44,13 +44,6 @@
             </div>
         </div>
     </nav>
-
-    <% flash.keys.each do |type| %>
-    <div data-alert class="flash <%= type %> alert-box radius">
-      <%= flash[type] %>
-      <a href="#" class="close">&times;</a>
-    </div>
-  <% end %>
     <body class="p-3 mb-2 bg-dark text-white">
      
       
