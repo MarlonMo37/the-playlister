@@ -21,4 +21,16 @@ module ApplicationHelper
     def redirect_if_logged_in
         redirect_to playlists_path if logged_in?
     end
+
+    def logo
+        if logged_in?
+            tag.li class: "nav-item" do
+                content_tag("a", "The Playlister", href: "#{user_path(current_user)}")  
+            end     
+        else
+            tag.li class: "nav-item" do
+                content_tag("a", "The Playlister", href: "#{login_path}")
+            end
+        end
+    end
 end

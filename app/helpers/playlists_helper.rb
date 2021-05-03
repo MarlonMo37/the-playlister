@@ -21,15 +21,17 @@ module PlaylistsHelper
         if playlist.songs.length == 0
             content_tag(:h3, "This playlist has no tracks, add some")
         else
-            playlist.songs.each do |song|
+            playlist.songs.map do |song|
                show_song(song, playlist)
-            end
+            end.join.html_safe
         end
     end
 
     def show_song(song, playlist)
-        render partial: "songs/song", locals: {song:song}
-        show_rating(song.id, playlist.id)
-        render partial: "delete", locals: {song: song, playlist: playlist}
+        tag.div class: "song-contrainer" do 
+            concat render partial: "songs/song", locals: {song:song}
+            concat show_rating(song.id, playlist.id)
+            concat render partial: "delete", locals: {song: song, playlist: playlist}
+        end
     end
 end

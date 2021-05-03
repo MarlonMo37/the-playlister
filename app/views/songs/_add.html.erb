@@ -1,0 +1,6 @@
+<h3>Add to playlist</h3>
+<%= form_for( :song, url: song_path(song), method: "patch" ) do |f| %>
+<%= f.select :playlists, options_for_select(pl) %>
+
+<%= f.submit "Add" %>
+<% end %>

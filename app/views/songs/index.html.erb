@@ -6,23 +6,9 @@
     <%= f.submit "Search" %>
 <% end %><br><br>
 
-
-
-
 <% @songs.each do |song| %>
     <%= render song %>
-    
     <div class=container>
-        <% if @user %>
-            <% pl = @user.playlists.map {|p| p['name'] if p.songs.include?(song) != true } %>
-                <% if pl.length != 0 %>
-                    <h3>Add to playlist</h3>
-                    <%= form_for( :song, url: song_path(song), method: "patch" ) do |f| %>
-                    <%= f.select :playlists, options_for_select(pl) %>
-
-                    <%= f.submit "Add" %>
-                    <% end %>
-                <% end %>
-        <% end %><br><br>
+        <%= add_to_playlist(song, @user) %><br><br>
     </div>
 <% end %>
