@@ -1,19 +1,17 @@
 <h1><%= @playlist.name %></h1>
  <%= link_to "Edit Playlist", edit_playlist_path(@playlist) %><br>
 
+ <%= show_all_songs(@playlist) %>
+
 <% if @playlist.songs.length == 0 %>
     <h3>This playlist has no tracks, go add some <%= link_to "here", songs_path %>!!</h3>
 <% else %>
     <% @playlist.songs.each do |song| %>
         <%= render song %>
-        
+
         <%= show_rating(song.id, @playlist.id) %>
 
-        <%= form_for(:song, url: song_path(song), :html => { method: "delete" }) do |f| %>
-                <%= f.hidden_field :id, :value => @playlist.id %>
-            <%= f.submit "Remove Track" %>
-        <% end %>
-        <br><br>
+        <%= render partial: "delete", locals: {song:song, playlist: @playlist} %>
        
     <% end %>
 <% end %>

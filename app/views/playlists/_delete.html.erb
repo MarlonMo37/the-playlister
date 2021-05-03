@@ -1,0 +1,5 @@
+<%= form_for(:song, url: song_path(song), :html => { method: "delete" }) do |f| %>
+    <%= f.hidden_field :id, :value => playlist.id %>
+<%= f.submit "Remove Track" %>
+<% end %>
+<br><br>
