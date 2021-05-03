@@ -1,17 +1,6 @@
 <h1><%= @playlist.name %></h1>
  <%= link_to "Edit Playlist", edit_playlist_path(@playlist) %><br>
-
+<div class="container">
  <%= show_all_songs(@playlist) %>
+</div>
 
-<% if @playlist.songs.length == 0 %>
-    <h3>This playlist has no tracks, go add some <%= link_to "here", songs_path %>!!</h3>
-<% else %>
-    <% @playlist.songs.each do |song| %>
-        <%= render song %>
-
-        <%= show_rating(song.id, @playlist.id) %>
-
-        <%= render partial: "delete", locals: {song:song, playlist: @playlist} %>
-       
-    <% end %>
-<% end %>

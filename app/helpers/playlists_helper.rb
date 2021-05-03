@@ -19,7 +19,7 @@ module PlaylistsHelper
 
     def show_all_songs(playlist)
         if playlist.songs.length == 0
-            content_tag(:h3, "This playlist has no tracks, add some")
+            content_tag(:h3, "This playlist has no tracks, add some!!")
         else
             playlist.songs.map do |song|
                show_song(song, playlist)
