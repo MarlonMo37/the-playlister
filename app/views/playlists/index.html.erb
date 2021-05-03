@@ -1,19 +1,7 @@
 <h1>Your Playlists</h1>
 
-
-
-<% if @playlists.length == 0 %>
-    <h2>You have no playlists, please create one!!</h2>
-<% else %>
-    <% @playlists.each do |playlist| %>
-        <h4><%= playlist.name %></h4>
-        <h4>Tracks: <%= playlist.songs.length %></h4>
-        <h4><%= link_to "View Playlist", playlist_path(playlist) %></h4>
-        <%= link_to "Edit Playlist", edit_playlist_path(playlist) %>
-        <%= link_to "Delete Playlist", playlist_path(playlist), method: :delete %>
-    <% end %>
-<% end %>
+<%= show_playlists(@playlists) %>
 
 
 <br><br>
-<%= link_to "Create a Playlist", new_playlist_path, class: 'button' %>
+<%= link_to "Create a Playlist", new_user_playlist_path, class: 'button' %>

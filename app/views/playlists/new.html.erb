@@ -4,14 +4,7 @@
 
 
 
-<%= form_with(model: @playlist) do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-
-    <%= f.label :favorite? %><br>
-    <%= f.select :favorite, options_for_select([["No", false], ["Yes", true]]) %><br><br>
-
-    <%= f.hidden_field :user_id, :value => @user.id %>
-
+<%= form_with(model: @playlist) do |f| %>      
+    <%= render partial: "form", locals: {f: f} %>
     <%= f.submit %>
 <% end %>

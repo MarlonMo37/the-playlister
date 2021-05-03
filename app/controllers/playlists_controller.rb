@@ -3,19 +3,26 @@ class PlaylistsController < ApplicationController
     layout "playlist"
 
     def index
-        @playlists = Playlist.all
+        if params[:user_id] && @user = User.find(params[:user_id])
+            @playlists = @user.playlists
+        else
+            @playlists = Playlist.all
+        end
     end
 
     def new
-        @user = current_user
-        @playlist = Playlist.new
+        if params[:user_id] && @user = User.find(params[:user_id])
+            @playlist = Playlist.new(user_id: params[:user_id])
+        else
+            @playlist = Playlist.new
+        end
     end
 
     def create
         @user = current_user
         @playlist = Playlist.create(playlist_params)
         if @playlist.valid?
-            redirect_to playlists_path
+            redirect_to user_playlists_path(@user)
         else
             render :new
         end
@@ -35,16 +42,17 @@ class PlaylistsController < ApplicationController
         @user = current_user
         @playlist = find_playlist
         if @playlist.update(playlist_params)
-            redirect_to playlists_path
+            redirect_to user_playlists_path(@user)
         else 
             render :edit
         end
     end
 
     def destroy
-        find_playlist
+        @user = current_user
+        @playlist = find_playlist
         @playlist.destroy
-        redirect_to playlists_path
+        redirect_to user_playlists_path(@user)
     end
 
     private

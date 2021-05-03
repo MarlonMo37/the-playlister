@@ -4,22 +4,13 @@
 <% if @playlist.songs.length == 0 %>
     <h3>This playlist has no tracks, go add some <%= link_to "here", songs_path %>!!</h3>
 <% else %>
-    <% @playlist.songs.each do |s| %>
-        <img src= "<%= s.album_avatar %>">
-        <h3><%= s.name %></h3>
-        <h3><%= link_to "Preview", s.preview, target: :_blank %><h3>
-        <h3>By: <%= s.artist_name %></h3>
-        <h3>Album: <%= s.album_name %></h3>
-
+    <% @playlist.songs.each do |song| %>
+        <%= render song %>
         
-        <% ps = PlaylistsSong.find_by(song_id: s.id, playlist_id: @playlist.id) %>
-            <% if ps.rating == nil %>
-                <h3>Rating: 0/5</h3>
-            <% else %>
-                <h3>Rating: <%= ps.rating %>/5</h3>
-            <% end %>
-        <%= form_for(:s, url: song_path(s), :html => { method: "delete" }) do |f| %>
-                <%= f.hidden_field :playlist_id, :value => @playlist.id %>
+        <%= show_rating(song.id, @playlist.id) %>
+
+        <%= form_for(:song, url: song_path(song), :html => { method: "delete" }) do |f| %>
+                <%= f.hidden_field :id, :value => @playlist.id %>
             <%= f.submit "Remove Track" %>
         <% end %>
         <br><br>

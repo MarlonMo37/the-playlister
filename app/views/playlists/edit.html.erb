@@ -7,24 +7,19 @@
     
 <div class="container">
     <%= form_with(model: @playlist) do |f| %>
-        <%= f.label :name %><br>
-        <%= f.text_field :name %><br>
+        
+        <%= render partial: "form", locals: {f: f} %>
 
-        <%= f.label :favorite? %><br>
-        <%= f.select :favorite, options_for_select([["No", false], ["Yes", true]]) %><br><br>
-
-        <%= f.hidden_field :user_id, :value => @user.id %>
-
-        <% @playlist.songs.each do |s| %>
+        <% @playlist.songs.each do |song| %>
             
-            <img src= "<%= s.album_avatar %>">
-            <h3><%= s.name %></h3>
+            <%= render song %>
             <%= f.fields_for :playlists_songs, a = PlaylistsSong.find_by(song_id: song.id, playlist_id: @playlist.id)  do |song_field| %>
-                <%= song_field.label :rating %>
+                <h3><%= song_field.label :rating %><h3>
                 <%= song_field.select :rating, options_for_select([["0", "0"],["1", "1"],["2", "2"],["3", "3"],["4", "4"],["5", "5"]], :selected => a.rating) %>
-            <% end %><br>
-        <% end %>
+            <% end %><br><br>
 
+        <% end %>
+            
         <%= f.submit %>
     <% end %>
 </div>

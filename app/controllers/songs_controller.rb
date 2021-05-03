@@ -14,16 +14,15 @@ class SongsController < ApplicationController
     end
 
     def update
-        @playlist =  Playlist.find_by(name: params["s"]["playlists"])
+        @playlist =  Playlist.find_by(name: params["song"]["playlists"])
         @song = Song.find_by(id: params[:id])
         @playlist.songs << @song
         redirect_to songs_path
     end
 
     def destroy
-        @playlist = Playlist.find_by(id: params["s"]["playlist_id"])
+        @playlist = Playlist.find_by(id: params["song"]["id"])
         @song =  Song.find_by(id: params["id"])
-
         @playlist.songs.delete(@song)
         redirect_to playlist_path(@playlist)
     end
@@ -31,6 +30,6 @@ class SongsController < ApplicationController
     private
 
     def song_params
-        params.require(:song).permit(:name, :preview, artist_name, album_name, album_avatar)
+        params.require(:song).permit(:name, :preview, :artist_name, :album_name, :album_avatar)
     end
 end
