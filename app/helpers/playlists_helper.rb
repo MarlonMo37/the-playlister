@@ -22,10 +22,14 @@ module PlaylistsHelper
             content_tag(:h3, "This playlist has no tracks, add some")
         else
             playlist.songs.each do |song|
-                render partial: "songs/song", locals: {song: song}
-                show_rating(song.id, playlist.id)
-                render partial: "delete", locals: {song: song, playlist: playlist}
+               show_song(song, playlist)
             end
         end
+    end
+
+    def show_song(song, playlist)
+        render partial: "songs/song", locals: {song:song}
+        show_rating(song.id, playlist.id)
+        render partial: "delete", locals: {song: song, playlist: playlist}
     end
 end

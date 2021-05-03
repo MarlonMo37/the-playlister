@@ -16,7 +16,7 @@
         <% if @user %>
             <% pl = @user.playlists.map {|p| p['name'] if p.songs.include?(song) != true } %>
                 <% if pl.length != 0 %>
-                    <h3>Add to playlist
+                    <h3>Add to playlist</h3>
                     <%= form_for( :song, url: song_path(song), method: "patch" ) do |f| %>
                     <%= f.select :playlists, options_for_select(pl) %>
 

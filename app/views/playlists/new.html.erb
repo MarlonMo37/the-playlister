@@ -2,8 +2,6 @@
 
 <%= conditional_errors(@playlist) %>
 
-
-
 <%= form_with(model: @playlist) do |f| %>      
     <%= render partial: "form", locals: {f: f} %>
     <%= f.submit %>

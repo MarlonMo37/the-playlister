@@ -1,7 +1,6 @@
 <h1>Your Playlists</h1>
-
-<%= show_playlists(@playlists) %>
-
-
-<br><br>
-<%= link_to "Create a Playlist", new_user_playlist_path, class: 'button' %>
+<div class=container>
+    <%= show_playlists(@playlists) %>
+    <br><br>
+    <%= link_to "Create a Playlist", new_user_playlist_path, class: 'button' %>
+</div>

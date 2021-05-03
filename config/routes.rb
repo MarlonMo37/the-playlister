@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root "static#home"
   
   get 'auth/:provider/callback', to: 'sessions#omniauth'
 
