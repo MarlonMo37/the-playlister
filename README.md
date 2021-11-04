@@ -1,6 +1,7 @@
-# My own pokemon team generator
+# The Playlister
 
-Using Sintra and Active Record a user can make an Sign Up or Log in to their account, and from there create their own pokemon teams. They can also edit those teams to their liking, by editing their teams, and also being able to delete them.
+Welcome to The Playlister!! Browse through todays top hits, and add them to your playlist!!
+
 
 ## Installation 
 
